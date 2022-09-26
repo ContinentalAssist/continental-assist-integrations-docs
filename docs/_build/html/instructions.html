@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instrucciones: &mdash; documentación de Continental Assist - </title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Modulos" href="modules.html" />
+    <link rel="prev" title="Manual de Usuario de los Web Services de Integración entre el Sistema Continental Assist y otros sistemas web" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Continental Assist
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instrucciones:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#condiciones-necesarias-para-acceder-al-servicio-web">1. Condiciones necesarias para acceder al servicio web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flujo-general">2. Flujo general</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#como-implementar-e-invocar-los-servicios-web">3. Cómo implementar e invocar los servicios web</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modulos</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modulos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Continental Assist</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Instrucciones:</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/instructions.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="instrucciones">
+<h1>Instrucciones:<a class="headerlink" href="#instrucciones" title="Enlace permanente a este encabezado"></a></h1>
+<section id="condiciones-necesarias-para-acceder-al-servicio-web">
+<span id="step1"></span><h2>1. Condiciones necesarias para acceder al servicio web<a class="headerlink" href="#condiciones-necesarias-para-acceder-al-servicio-web" title="Enlace permanente a este encabezado"></a></h2>
+<div class="line-block">
+<div class="line">El sitio web que se suscriba con Continental Assist para ofrecer el servicio, debe contratar un servicio de certificación https en donde sea colocada la herramienta a desarrollar.</div>
+<div class="line">Continental Assist sólo se limitará a ofrecer la estructura resultante del servicio web con los datos resultantes de la compra del plan de servicio. El diseño de los frontend y la distribución será completa responsabilidad de los webmasters de los sites externos.</div>
+<div class="line">Toda agencia o sitio externo que necesite utilizar los servicios en cuestión debe registrarse en el sistema como una agencia, por lo cual deben suministrar la siguiente información, adicional a la que normalmente se solicita, al personal de Continental Assist:</div>
+</div>
+<ul class="simple">
+<li><p>Nombre del Dominio registrado correspondiente a su site (URL de la página web principal). Por ejemplo para el caso del portal <strong>Agencia de Viajes Virtual</strong>, sería  <strong>“http://www.agenciadeviajesvirtual.com”</strong>.</p></li>
+<li><p>Una vez registrado y activado el usuario, se le remitirá, vía correo electrónico, los datos de acceso al Sistema Continental Assist como agencia, así como el presente manual con la información de cómo implementar y utilizar los servicios y una clave de acceso <strong>(“API KEY”)</strong> única para que pueda utilizar el servicio.</p></li>
+</ul>
+<p><strong>API KEY:</strong> El consumo de los servicios necesita una clave encriptada, la cual es generada por el personal de sistemas de Continental Assist y representa la llave para validar el origen y el destino de las peticiones, esta llave es única e intransferible, es validada y asignada a cada agencia y cada tipo de usuario. El uso de la misma será detallado en <strong>Cómo implementar e invocar los servicios web.</strong></p>
+</section>
+<section id="flujo-general">
+<span id="step2"></span><h2>2. Flujo general<a class="headerlink" href="#flujo-general" title="Enlace permanente a este encabezado"></a></h2>
+<div class="line-block">
+<div class="line">Para un correcto uso de los servicios de Continental Assist es preciso conocer el flujo general del proceso de compra de la empresa, el cual se basa en los siguientes pasos respectivamente:</div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Determinar los datos generales del viaje:</dt><dd><ul>
+<li><p>Definir Fecha de inicio y Fecha de fin.</p></li>
+<li><p>Seleccionar Categoría.</p></li>
+<li><p>Seleccionar Origen.</p></li>
+<li><p>Seleccionar Destino.</p></li>
+<li><p>Definir cantidad de pasajeros y la edad de los mismos.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Seleccionar Plan:</dt><dd><ul>
+<li><p>Obtener información detallada de los planes (Beneficios y Precios).</p></li>
+<li><p>Seleccionar plan.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Suministrar Datos de los pasajeros.</p></li>
+<li><p>Seleccionar Beneficios Adicionales.</p></li>
+<li><p>Suminitrar datos de la tarjeta para la compra.</p></li>
+<li><p>Comprar.</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Luego de presionar el botón “Comprar”, se procede al proceso interno del sitio para sus respectivas validaciones y el envío de los datos correspondientes a la compra del plan de servicio.</div>
+<div class="line">La respuesta que devuelva el sistema (sea positiva o negativa), tanto del servicio de compra como del resto de servicios, será enviada en formato interoperable (JSON) el cual debe ser formateado en la página receptora.</div>
+</div>
+</section>
+<section id="como-implementar-e-invocar-los-servicios-web">
+<span id="step3"></span><h2>3. Cómo implementar e invocar los servicios web<a class="headerlink" href="#como-implementar-e-invocar-los-servicios-web" title="Enlace permanente a este encabezado"></a></h2>
+<div class="line-block">
+<div class="line">La implementación de los servicios web corresponde a las operaciones de Cotización y Compra, los cuales son servicios ofrecidos por Continental Assist, utilizando para ello la interoperabilidad que ofrecen este tipo de tecnología. Los Servicios Web a presentar a continuación se desarrollaron utilizar el protocolo <strong>REST</strong>, el cual se caracteriza por no utilizar un contrato de servicio basado en <strong>WSDL</strong> y por utilizar el formato <strong>JSON</strong> en vez de <strong>XML</strong> para el transporte de las peticiones y respuestas.</div>
+</div>
+<div class="line-block">
+<div class="line">Para la implementación exitosa de los servicios deben llevarse a cabo las siguientes tareas:</div>
+</div>
+<ul class="simple">
+<li><p>Incluir dentro de los <strong>headers</strong> de la petición el siguiente parámetro como Key: “Content-Type”, y como Value: “application/x-www-form-urlencoded”.</p></li>
+<li><p>Incluir dentro de los <strong>headers</strong> de la petición el siguiente parámetro como Key: “PHP-AUTHUSER”, y como Value la API KEY suministrada por Continental Assist.</p></li>
+<li><p>Los servicios web de compra, reciben como parámetros la información de los formularios, estructuradas en formato JSON, pasados como valores <strong>POST.</strong></p></li>
+</ul>
+<img alt="_images/img_consulta_categorias.jpg" src="_images/img_consulta_categorias.jpg" />
+<p class="rubric">(NOTA: La ruta “demo.continentalassist.com/restapi/v1/” es únicamente para fines de pruebas y desarrollo de los servicios).</p>
+<p class="centered">
+<strong>Listado de Servicios</strong></p></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Manual de Usuario de los Web Services de Integración entre el Sistema Continental Assist y otros sistemas web" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Modulos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2022, Continental Assist.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
