@@ -5,15 +5,17 @@ build:
   tools:
     python: "3.9"
 
+
+sphinx:
+  configuration: docs/conf.py
+  
+
 python:
   # Install our python package before building the docs
   install:
     - method: pip
       path: .
       
-sphinx:
-  configuration: docs/conf.py
-  fail_on_warning: true
   
 formats:
   - pdf
