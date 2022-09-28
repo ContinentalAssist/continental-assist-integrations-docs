@@ -142,7 +142,146 @@
 <img alt="_images/img_consulta_categorias.jpg" src="_images/img_consulta_categorias.jpg" />
 <p class="rubric">(NOTA: La ruta “demo.continentalassist.com/restapi/v1/” es únicamente para fines de pruebas y desarrollo de los servicios).</p>
 <p class="centered">
-<strong>Listado de Servicios</strong></p></section>
+<strong>Listado de Servicios</strong></p><table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 47%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Nombre del servicio</p></th>
+<th class="head"><p>Descripción y Respuesta</p></th>
+<th class="head"><p>Parametros Requeridos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>consulta_pais</p></td>
+<td><div class="line-block">
+<div class="line">Este webservice devuelve id y nombre</div>
+<div class="line">de países al que se debe seleccionar</div>
+<div class="line">el país desde donde se está haciendo</div>
+<div class="line">la petición. (Este valor es requerido</div>
+<div class="line">como parámetro en cada uno de los</div>
+<div class="line">servicios).</div>
+</div>
+<div class="line-block">
+<div class="line">Ejemplo Respuesta:</div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+<span class="go">{</span>
+<span class="go">   &quot;resultado&quot;: [</span>
+<span class="go">   {</span>
+<span class="go">     &quot;id&quot;: &quot;47&quot;,</span>
+<span class="go">     &quot;pais&quot;: &quot;Americas&quot;</span>
+<span class="go">   },</span>
+<span class="go">   {</span>
+<span class="go">     &quot;id&quot;: &quot;20&quot;,</span>
+<span class="go">     &quot;pais&quot;: &quot;Antigua and Barbuda&quot;</span>
+<span class="go">   },</span>
+<span class="go">   {</span>
+<span class="go">     &quot;id&quot;: &quot;1&quot;,</span>
+<span class="go">     &quot;pais&quot;: &quot;Argentina&quot;</span>
+<span class="go">   },</span>
+<span class="go">   {</span>
+<span class="go">     &quot;id&quot;: &quot;36&quot;,</span>
+<span class="go">     &quot;pais&quot;: &quot;Aruba&quot;</span>
+<span class="go">   }</span>
+<span class="go">   ],</span>
+<span class="go">   &quot;cantidad&quot;: 4,</span>
+<span class="go">   &quot;error&quot;: false</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>ps</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">consulta_categorias</div>
+<div class="line">_x_pais_dias</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Devuelve el id y el nombre de las</div>
+<div class="line">categorías correspondientes a los</div>
+<div class="line">el país desde donde se está haciendo</div>
+<div class="line">a las características de la agencia</div>
+<div class="line">solicitante.</div>
+</div>
+<div class="line-block">
+<div class="line">Ejemplo Respuesta:</div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+<span class="go">{</span>
+<span class="go">  &quot;resultado&quot;: [</span>
+<span class="go">  {</span>
+<span class="go">    &quot;id_categoria&quot;: &quot;24&quot;,</span>
+<span class="go">    &quot;categoria&quot;: &quot;Planes por Viaje&quot;</span>
+<span class="go">  },</span>
+<span class="go">  {</span>
+<span class="go">    &quot;id_categoria&quot;: &quot;23&quot;,</span>
+<span class="go">    &quot;categoria&quot;: &quot;Anuales-Multiviajes&quot;</span>
+<span class="go">  }</span>
+<span class="go">  ],</span>
+<span class="go">  &quot;cantidad&quot;: 2,</span>
+<span class="go">  &quot;error&quot;: false</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>ps</p></li>
+<li><p>id_lenguaje</p></li>
+<li><p>id_pais</p></li>
+<li><p>fecha_desde</p></li>
+<li><p>fecha_hasta</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">consulta_origenes</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Devuelve id y nombre de paises que</div>
+<div class="line">determinan los origenes permitidos</div>
+<div class="line">para Continental Assist.</div>
+</div>
+<div class="line-block">
+<div class="line">Ejemplo Respuesta:</div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+<span class="go">{</span>
+<span class="go">  &quot;resultado&quot;: [</span>
+<span class="go">  {</span>
+<span class="go">    &quot;iso_country&quot;: &quot;AL&quot;,</span>
+<span class="go">    &quot;categoria&quot;: &quot;Planes por Viaje&quot;</span>
+<span class="go">  },</span>
+<span class="go">  {</span>
+<span class="go">    &quot;id_categoria&quot;: &quot;23&quot;,</span>
+<span class="go">    &quot;categoria&quot;: &quot;Anuales-Multiviajes&quot;</span>
+<span class="go">  }</span>
+<span class="go">  ],</span>
+<span class="go">  &quot;cantidad&quot;: 2,</span>
+<span class="go">  &quot;error&quot;: false</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>ps</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>body row 2</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 

@@ -1,7 +1,0 @@
-prueba\_archivo\_python module
-==============================
-
-.. automodule:: prueba_archivo_python
-   :members:
-   :undoc-members:
-   :show-inheritance:
