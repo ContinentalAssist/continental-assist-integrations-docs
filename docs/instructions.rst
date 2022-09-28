@@ -136,11 +136,11 @@ Instrucciones:
 |                      |   "resultado": [                       |                        |
 |                      |   {                                    |                        |
 |                      |     "iso_country": "AL",               |                        |
-|                      |     "categoria": "Planes por Viaje"    |                        |
+|                      |     "description": "Albania"           |                        |
 |                      |   },                                   |                        |
 |                      |   {                                    |                        |
-|                      |     "id_categoria": "23",              |                        |
-|                      |     "categoria": "Anuales-Multiviajes" |                        |
+|                      |     "iso_country": "DE",               |                        |
+|                      |     "description": "Alemania"          |                        |
 |                      |   }                                    |                        |
 |                      |   ],                                   |                        |
 |                      |   "cantidad": 2,                       |                        |
@@ -148,6 +148,297 @@ Instrucciones:
 |                      | }                                      |                        |
 |                      |                                        |                        |
 +----------------------+----------------------------------------+------------------------+
-| body row 2           |                                        |                        |
+| | consulta_destinos  | | Devuelve id y nombre de lugares que  | - ps                   | 
+|                      | | determinan los destinos permitidos   |                        |
+|                      | | para Continental Assist.             |                        |
+|                      |                                        |                        |
+|                      | | Ejemplo Respuesta:                   |                        |
+|                      |                                        |                        |
+|                      | >>>                                    |                        |
+|                      | {                                      |                        |
+|                      |   "resultado": [                       |                        |
+|                      |   {                                    |                        |
+|                      |     "id_destino": "1",                 |                        |
+|                      |     "descripcion_destino": "Europa"    |                        |
+|                      |   },                                   |                        |
+|                      |   {                                    |                        |
+|                      |     "id_destino": "2",                 |                        |
+|                      |     "descripcion_destino": "Mundial"   |                        |
+|                      |   }                                    |                        |
+|                      |   ],                                   |                        |
+|                      |   "cantidad": 2,                       |                        |
+|                      |   "error": false                       |                        |
+|                      | }                                      |                        |
+|                      |                                        |                        |
++----------------------+----------------------------------------+------------------------+
+| | consulta_planes    | | Devuelve el id del plan, el nombre   | - ps                   | 
+| | (deprecated)       | | del plan, los precios individuales y | - dias                 |
+| | Sustituido por:    | | grupales calculados en base a la     | - edades [edades]      |
+| | consulta_planes    | | cantidad de pasajeros y sus edades   | - id_categoria         |
+| | _grupal            |                                        | - id_destino           |
+|                      | | Ejemplo Respuesta:                   |                        |
+|                      |                                        |                        |
+|                      | >>>                                    |                        |
+|                      | {                                      |                        |
+|                      |   "resultado": [                       |                        |
+|                      |   {                                    |                        |
+|                      |     "id": "21",                        |                        |
+|                      |     "valor": "21",                     |                        |
+|                      |     "nombre": "Traveler",              |                        |
+|                      |     "precio": "348.00",                |                        |
+|                      |     "precio_adulto_mayor": "522.00",   |                        |
+|                      |     "moneda": "USD",                   |                        |
+|                      |     "edad_maxima_sin_incremento": "70",|                        |
+|                      |     "acepta_pago_tdc": "SI",           |                        |
+|                      |     "precio_grupal": "870.00"          |                        |
+|                      |   }                                    |                        |
+|                      |   ],                                   |                        |
+|                      |   "cantidad": 1,                       |                        |
+|                      |   "error": false                       |                        |
+|                      | }                                      |                        |
+|                      |                                        |                        |
++----------------------+----------------------------------------+------------------------+
+| | consulta_beneficios| | Devuelve el id_beneficio, el nombre  | - ps                   | 
+| | _planes_costos     | | de los beneficios y, dentro de otro  | - id_lenguaje          |
+|                      | | arreglo, el id_plan y el valor de    | - id_pais              |
+|                      | | cada uno de los beneficios para      | - id_categoria         |
+|                      | | dicho plan.                          | - id_planes            |
+|                      |                                        | - [id_planes]          |
+|                      | | Ejemplo Respuesta:                   |                        |
+|                      |                                        |                        |
+|                      | >>>                                    |                        |
+|                      | {                                      |                        |
+|                      |   "resultado": [                       |                        |
+|                      |   {                                    |                        |
+|                      |     "id_beneficio": "1",               |                        |
+|                      |     "nombre_beneficio": "Asistencia    |                        |
+|                      |               médica por accidente",   |                        |
+|                      |     "planes": [                        |                        |
+|                      |        {                               |                        |
+|                      |           "id_plan": "114",            |                        |
+|                      |           "valor": "USD 15.000"        |                        |
+|                      |        }                               |                        |
+|                      |        {                               |                        |
+|                      |           "id_plan": "116",            |                        |
+|                      |           "valor": "USD/EUR 30.000"    |                        |
+|                      |        }                               |                        |
+|                      |        {                               |                        |
+|                      |           "id_plan": "117",            |                        |
+|                      |           "valor": "USD 50.000"        |                        |
+|                      |        }                               |                        |
+|                      |        {                               |                        |
+|                      |           "id_plan": "119",            |                        |
+|                      |           "valor": "USD 100.000"       |                        |
+|                      |        }                               |                        |
+|                      |      ]                                 |                        |
+|                      |   }                                    |                        |
+|                      |   ],                                   |                        |
+|                      |   "cantidad": 1,                       |                        |
+|                      |   "error": false                       |                        |
+|                      | }                                      |                        |
+|                      |                                        |                        |
++----------------------+----------------------------------------+------------------------+
+| | comprar            | | Devuelve codigo del vouchers y el    | - ps                   | 
+|                      | | link para visualizar dicho voucher.  | - origen               |
+|                      |                                        | - destino              |
+|                      | | Ejemplo Respuesta:                   | - desde                |
+|                      |                                        | - hasta                |
+|                      | >>>                                    | - id_categoria         |
+|                      | {                                      | - id_plan              |
+|                      |   "resultado": [                       | - contacto             |
+|                      |   {                                    |                        |
+|                      |     "codigo": "CA-12345-00",           | | [nombre_contacto     |
+|                      |     "link_voucher":                    | | telefono_contacto    |
+|                      |  "https://continentalassist.co/backmin | | email_contacto]      |
+|                      |  /voucher.php?idv=CA-A43LCH-1-MX&idv5  |                        |
+|                      |  =spa"                                 | - beneficiarios        |
+|                      |   }                                    |                        |
+|                      |   ],                                   | | [nombre              |
+|                      |   "cantidad": 1,                       | | apellido             |
+|                      |   "error": false                       | | fechaNac             |
+|                      | }                                      | | edad                 |
+|                      |                                        | | pasaporte            |
+|                      |                                        | | email                |
+|                      |                                        | | telefono             |
+|                      |                                        | | beneficios           |
+|                      |                                        | | _adicionales [       |
+|                      |                                        | |     id_beneficio     |
+|                      |                                        | |     _adicional       |
+|                      |                                        | |   ]                  |
+|                      |                                        | | ]                    |
+|                      |                                        |                        |
+|                      |                                        | - ip                   |
+|                      |                                        | - forma_pago           |
+|                      |                                        | - inputCardNumber      |
+|                      |                                        | - inputMonth           |
+|                      |                                        | - inputYear            |
+|                      |                                        | - inputCVV2            |
+|                      |                                        | - totalgeneral         |
+|                      |                                        | - inputNameCard        |
 +----------------------+----------------------------------------+------------------------+
 
+
+.. centered:: Ejemplos
+
+
++-----------------------------+-----------------------------------------------+------------------------------+
+| Servicio                    | Ejemplo de JSON Requerido (Body)              | Formato                      |
++=============================+===============================================+==============================+
+| consulta_pais               | >>>                                           | | **ps:** Dominio registrado |
+|                             | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com"  |                              |
+|                             | }                                             |                              |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| | consulta_categorias       | >>>                                           | | **ps:** Dominio registrado | 
+| | _x_pais_dias              | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com", | | **id_lenguaje:** ('span'   |
+|                             | "id_lenguaje":"spa",                          | | : español, 'eng': ingles). |
+|                             | "id_pais":11,                                 | | **id_pais:** id_selecciona |
+|                             | "fecha_desde":"09-06-2017",                   | | do del servicio            |
+|                             | "fecha_hasta":"13-06-2017"                    | | 'consulta_pais'            |
+|                             | }                                             |                              |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| consulta_origenes           | >>>                                           | | **ps:** Dominio registrado |
+|                             | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com"  |                              |
+|                             | }                                             |                              |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| consulta_destinos           | >>>                                           | | **ps:** Dominio registrado |
+|                             | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com"  |                              |
+|                             | }                                             |                              |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| | consulta_planes           | Sustituido por:                               | | **ps:** Dominio registrado | 
+| | (**Deprecated**)          | consulta_planes_grupal                        | | correspondiente a su site. |
+|                             |                                               | | **dias:** Un entero que    |
+|                             | >>>                                           | | indique la cantidad de     |
+|                             | {                                             | | días del viaje             |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com", | | **edades:** Un arreglo con |
+|                             | "dias":120,                                   | | las edades de los          |
+|                             | "edades":[20,75],                             | | pasajeros                  |
+|                             | "id_categoria":24,                            | | **id_categoria:** id       |
+|                             | "id_destino":2                                | | seleccionado del servicio  |
+|                             | }                                             | | consulta_categorias        |
+|                             |                                               | | **id_destino:** id         |
+|                             |                                               | | seleccionado del servicio  |
+|                             |                                               | | consulta_destinos          |
++-----------------------------+-----------------------------------------------+------------------------------+
+| | consulta_beneficios       | >>>                                           | | **ps:** Dominio registrado | 
+| | _planes_costos            | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com", | | **id_lenguaje:** ('span'   |
+|                             | "id_lenguaje":"spa",                          | | : español, 'eng': ingles). |
+|                             | "id_pais":11,                                 | | **id_pais:** id_selecciona |
+|                             | "id_categoria":22,                            | | do del servicio            |
+|                             | "id_planes":["114","116","117","119"]         | | 'consulta_pais'            |
+|                             | }                                             | | **id_categoria:** id       |
+|                             |                                               | | seleccionado del servicio  |
+|                             |                                               | | 'consulta_categorias       |
+|                             |                                               | | _x_pais_dias'              |
+|                             |                                               | | **id_planes:** (arreglo)   |
+|                             |                                               | | id o grupo de ids          |
+|                             |                                               | | seleccionados del servicio |
+|                             |                                               | | 'consulta_planes_grupal'   |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| | consulta_beneficios       | >>>                                           | | **ps:** Dominio registrado | 
+| | _adicionales              | {                                             | | correspondiente a su site. |
+|                             | "ps":"localhost",                             | | **id_categoria:** id       |
+|                             | "id_categoria":24,                            | | seleccionado del servicio  |
+|                             | "id_plan":21                                  | | 'consulta_categorias       |
+|                             | }                                             | | _x_pais_dias'              |
+|                             |                                               | | **id_plan:** id            |
+|                             |                                               | | seleccionado del servicio  |
+|                             |                                               | | 'consulta_planes_grupal'   |
+|                             |                                               |                              |
++-----------------------------+-----------------------------------------------+------------------------------+
+| | comprar                   | >>>                                           | | **ps:** Dominio registrado | 
+|                             | {                                             | | correspondiente a su site. |
+|                             | "ps":"http://www.agenciadeviajesvirtual.com", | | **id_origen:** id          |
+|                             | "origen": "CO",                               | | seleccionado del servicio  |
+|                             | "destino": 2,                                 | | 'consulta_origen'          |
+|                             | "desde": "09/06/2017",                        | | **id_destino:** id         |
+|                             | "hasta": "13/06/2017",                        | | seleccionado del servicio  |
+|                             | "id_categoria": 24,                           | | 'consulta_destino'         |
+|                             | "id_plan": 21,                                | | **desde:** Fecha de inicio |
+|                             | "familiar": "0",                              | | del viaje                  |
+|                             | "contacto": {                                 | | formato DD/MM/YYYY         |
+|                             |   "nombre_contacto": "CONTACTO",              | | **hasta:** Fecha de inicio |
+|                             |   "telefono_contacto": "04121234556",         | | del viaje                  |
+|                             |   "email_contacto": "contacto@gmail.com"      | | formato DD/MM/YYYY         |
+|                             |   },                                          | | **id_categoria:** id       |
+|                             | "beneficiarios": [{                           | | seleccionado del servicio  |
+|                             |   "nombre": "BENEFICIARIO",                   | | 'consulta_categorias       |
+|                             |   "apellido": "UNO",                          | | _x_pais_dias'              |
+|                             |   "fechaNac": "01/01/1941",                   | | **id_plan:** id            |
+|                             |   "edad": "76",                               | | seleccionado del servicio  |
+|                             |   "pasaporte": "1234567",                     | | 'consulta_planes_grupal'   |
+|                             |   "email": "beneficiario1@gmail.com",         | | (Opcional)                 |
+|                             |   "telefono": "04124121212",                  | | **familiar:** El valor '1' |
+|                             |   "beneficios_adicionales":[35,36]            | | (en caso de requerir Plan  |
+|                             |   },                                          | | Familiar). Por defecto     |
+|                             |   {                                           | | este valor se capturará    |
+|                             |   "nombre": "BENEFICIARIO",                   | | en '0' (cero).             |
+|                             |   "apellido": "DOS",                          | | Nota: Soló las peticiones  |
+|                             |   "fechaNac": "01/01/1992",                   | | que cumplan conlos         |
+|                             |   "edad": "25",                               | | requerimientos mínimos y   |
+|                             |   "pasaporte": "1234567",                     | | las siguientes categorías: |
+|                             |   "email": "beneficiario2@gmail.com",         | | Anuales Multiviajes        |
+|                             |   "telefono": "04124121212",                  | | (id 23) y                  |
+|                             |   "beneficios_adicionales":[35]               | | Planes por Viaje (id 24),  |
+|                             |   }],                                         | | aplican a este privilegio  |                             
+|                             | "ip": "10.10.10.11",                          | |                            |
+|                             | "forma_pago":"1",                             | | **Contacto:**              |
+|                             | "inputCardNumber":"",                         | | **nombre_contacto:**       |
+|                             | "inputMonth":"",                              | | Nombre y apellido del      |
+|                             | "inputYear":"",                               | | contacto - formato         |
+|                             | "inputCVV2":"",                               | | caracteres sin caracteres  |
+|                             | "totalgeneral":"",                            | | especiales                 |
+|                             | "inputNameCard":""                            | | **telefono_contacto:**     |
+|                             | }                                             | | Número telefónico del      |
+|                             |                                               | | contacto - formato         |
+|                             |                                               | | númerico sin caracteres    |
+|                             |                                               | | especiales                 |
+|                             |                                               | | **email_contacto:**        |
+|                             |                                               | | Correo electronico del     |
+|                             |                                               | | contacto - formato         |
+|                             |                                               | | de email                   |
+|                             |                                               | |                            |
+|                             |                                               | | **Beneficiarios:**         |
+|                             |                                               | | **nombre:**                |
+|                             |                                               | | Nombre del beneficiario    |
+|                             |                                               | | formato caracteres sin     |
+|                             |                                               | | caracteres especiales      |
+|                             |                                               | | **apellido:**              |
+|                             |                                               | | Apellido del beneficiario  |
+|                             |                                               | | formato caracteres sin     |
+|                             |                                               | | caracteres especiales      |
+|                             |                                               | | **fechaNac:**              |
+|                             |                                               | | Fecha de nacimiento del    |
+|                             |                                               | | beneficiario - formato     |
+|                             |                                               | | DD/MM/YYYY                 |
+|                             |                                               | | **edad:**                  |
+|                             |                                               | | Edad del beneficiario, en  |
+|                             |                                               | | caso de ser recien nacido  |
+|                             |                                               | | la edad sería cero (0)     |
+|                             |                                               | | **pasaporte:**             |
+|                             |                                               | | Número del documento       |
+|                             |                                               | | formato caracteres         |
+|                             |                                               | | **email:**                 |
+|                             |                                               | | Correo electrónico del     |
+|                             |                                               | | beneficiario - formato de  |
+|                             |                                               | | email                      |
+|                             |                                               | | **telefono:**              |
+|                             |                                               | | Número telefónico del      |
+|                             |                                               | | beneficiario - formato     |
+|                             |                                               | | númerico sin caracteres    |
+|                             |                                               | | especiales                 |
+|                             |                                               | | **beneficios_adicionales:**|
+|                             |                                               | | (arreglo) id de los        |
+|                             |                                               | | beneficios en el servicio  |
+|                             |                                               | | 'consulta_beneficios       |
+|                             |                                               | | _adicionales'              |
++-----------------------------+-----------------------------------------------+------------------------------+
