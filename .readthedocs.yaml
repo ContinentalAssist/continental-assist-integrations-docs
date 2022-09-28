@@ -1,5 +1,6 @@
 version: 2
 
+
 build:
   os: "ubuntu-20.04"
   tools:
@@ -15,15 +16,9 @@ python:
   install:
     - method: pip
       path: .
-      
-html_context = {
-    "display_github": True, # Integrate GitHub
-    "github_user": "ErnestoContinental", # Username
-    "github_repo": "continental-assist-integrations-docs", # Repo name
-    "github_version": "main", # Version
-    "conf_py_path": "/source/", # Path in the checkout to the docs root
-}      
+   
   
 formats:
   - pdf
   - epub
+
