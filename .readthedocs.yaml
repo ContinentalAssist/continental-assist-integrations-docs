@@ -5,15 +5,9 @@ build:
   os: "ubuntu-20.04"
   tools:
     python: "3.9"
-  jobs:
-    post_create_environment:
-      - python -m pip install --no-cache-dir .[extras]
 
-python:
-  # Install our python package before building the docs
-  install:
-    - method: pip
-      path: .
+
+
 
 
 sphinx:
