@@ -15,10 +15,16 @@ correcto funcionamiento de la integración.
    :caption: Contents:
 
 
-
-Indices and tables
-==================
+Indices y tablas
+================
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Modulos
+
+   modules 
