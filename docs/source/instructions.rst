@@ -442,36 +442,808 @@ Instrucciones:
 |                             |                                               | | 'consulta_beneficios       |
 |                             |                                               | | _adicionales'              |
 |                             |                                               |                              |
+|                             |                                               | | **NOTA IMPORTANTE:**       |
+|                             |                                               | | Los Beneficios Adicionales |
+|                             |                                               | | **'Práctica del deporte'** |
+|                             |                                               | | y **'Futura mamá'**        |
+|                             |                                               | | no pueden ser seleccionados|
+|                             |                                               | | a la vez para un mismo     |
+|                             |                                               | | beneficiario               |
+|                             |                                               | |                            |
+|                             |                                               | | **ip:** La dirección ip    |
+|                             |                                               | | del equipo desde donde se  |
+|                             |                                               | | esté haciendo la petición  |
+|                             |                                               | | **forma_pago:**            |
+|                             |                                               | | El valor '1'               |
+|                             |                                               | | **inputCardNumber:**       |
+|                             |                                               | | '' (valor vacío)           |
+|                             |                                               | | **inputMonth:**            |
+|                             |                                               | | '' (valor vacío)           |
+|                             |                                               | | **inputYear:**             |
+|                             |                                               | | '' (valor vacío)           |
+|                             |                                               | | **inputCVV2:**             |
+|                             |                                               | | '' (valor vacío)           |
+|                             |                                               | | **totalgeneral:**          |
+|                             |                                               | | '' (valor vacío)           |
+|                             |                                               | | **inputNameCard:**         |
+|                             |                                               | | '' (valor vacío)           |
 |                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
-|                             |                                               |                              |
+|                             |                                               | | **NOTA IMPORTANTE:**       |
+|                             |                                               | | **En caso de rquerir el**  |
+|                             |                                               | | **PLAN FAMILIAR, el**      |
+|                             |                                               | | **servicio se encargará**  |
+|                             |                                               | | **de realizar cada una de**|
+|                             |                                               | | **las validaciones**       |
+|                             |                                               | | **correspondientes a los** |
+|                             |                                               | | **requerimientos mínimos** |
+|                             |                                               | | **para aplicar dicho**     |
+|                             |                                               | | **privilegio. por defecto**|
+|                             |                                               | | **el servicio omite el**   |
+|                             |                                               | | **requerimiento de PLAN**  |
+|                             |                                               | | **FAMILIAR**               |
 |                             |                                               |                              |
 |                             |                                               |                              |
 +-----------------------------+-----------------------------------------------+------------------------------+
+
+- La estructuración del JSON antes nombrado es responsabilidad de los webmasters de los sites externos.
+
+
+.. centered:: **OTROS SERVICIOS**
+
+**Nombre del Servicio:** consulta_voucher
+
+**Parámetros Requeridos:**
+
+- ps
+- language_id
+- código
+
+**Ejemplo:**
+
+>>>
+{
+"ps":"http://prod.continentalassist.com",
+"language_id":"spa",
+"codigo":"CA-28L9M2-MX"
+}
+
+Al recibir los datos, este servicio evalúa el código del voucher y determina el tipo de voucher que se está consultando.
+
+Los tipos de voucher pueden ser los siguientes:
+
+- Voucher Estándar.
+- Voucher Corporativo.
+- Voucher Emisión Corporativa.
+- Voucher Venta de Precompra.
+- Voucher Emisión de Precompra.
+
+
+**Voucher Estándar**
+++++++++++++++++++++
+
+
+- Conformado por código de 3 bloques separados por guiones (Ej: CA-XXXX-XX) donde la categoría no es ni “corporativo” ni “precompra”:
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-28L9M2-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+      "voucher": "CA-28L9M2-MX",
+      "id_voucher": "38646",
+      "origen": "Mexico",
+      "destino": "Mundial",
+      "salida": "15/02/2018",
+      "retorno": "15/07/2018",
+      "categoria": "Larga Estadia",
+      "plan": "Larga Estadía Total",
+      "forma_pago": "Contado",
+      "agencia": "NOMBRE DE LA AGENCIA",
+      "nombre_contacto": "NOMBRE DEL CONTACTO",
+      "telefono_contacto": "7124881472",
+      "email_contacto": "CONTACTO@HOTMAIL.COM",
+      "status": "Anulado",
+      "beneficiarios": [
+          {
+            "nombre": "NOMBRE BENEFICIARIO 1",
+            "apellido": "APELLIDOS BENEFICIARIO 1",
+            "fecha_nacimiento": "03/01/1993",
+            "documento": "G11764934",
+            "telefono": "7222525243",
+            "email": " BENEFICIARIO 1@HOTMAIL.COM",
+            "voucher": "CA-28L9M2-1-MX"
+          },
+          {
+            "nombre": "NOMBRE BENEFICIARIO 2",
+            "apellido": "APELLIDOS BENEFICIARIO 2",
+            "fecha_nacimiento": "03/01/1993",
+            "documento": "G11764934",
+            "telefono": "7222525243",
+            "email": " BENEFICIARIO2@HOTMAIL.COM",
+            "voucher": "CA-28L9M2-1-MX"
+          }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false
+}
+
+
+- Conformado por código de 4 bloques separados por guiones (Ej: CA-XXXX-B-XX) donde la categoría no es ni “corporativo” ni “precompra”: En este caso, el bloque adicional representa el número del beneficiario, es decir que el servicio responderá con datos específicos con respecto a ese voucher, en caso de que extistan más beneficiarios asociados serían omitidos en la consulta.
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-28L9M2-1-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+      "voucher": "CA-28L9M2-MX",
+      "id_voucher": "38646",
+      "origen": "Mexico",
+      "destino": "Mundial",
+      "salida": "15/02/2018",
+      "retorno": "15/07/2018",
+      "categoria": "Larga Estadia",
+      "plan": "Larga Estadía Total",
+      "forma_pago": "Contado",
+      "agencia": "NOMBBRE DE LA AGENCIA",
+      "nombre_contacto": "NOMBRE DEL CONTACTO",
+      "telefono_contacto": "7124881472",
+      "email_contacto": "CONTACTO@HOTMAIL.COM",
+      "status": "Activo",
+      "beneficiarios": [
+        {
+          "nombre": "NOMBRE BENEFICIARIO 1",
+          "apellido": "APELLIDO BENEFICIARIO 1",
+          "fecha_nacimiento": "03/01/1993",
+          "documento": "G11764934",
+          "telefono": "121411585",
+          "email": "BENEFICIARIO1@HOTMAIL.COM",
+          "voucher": "CA-28L9M2-1-MX"
+        }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false
+}
+
+- Conformado por código de 5 bloques separados por guiones (Ej: CA-XXXX-E-B-XX). En este caso, el bloque E representa el número de la emisión y el bloque B el número del beneficiario. Este tipo de búsqueda se hacen para consultar datos directos del beneficiario de una emisión corporativa o una precompra, aún así, la respuesta del servicio sigue siendo una respuesta de voucher estándar.
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-KCCL2M-1-1-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+    "voucher": "CA-KCCL2M-1-1-MX",
+    "origen": "Mexico",
+    "destino": "Mundial",
+    "salida": "09/01/2018",
+    "retorno": "13/01/2018",
+    "categoria": "Corporativo",
+    "plan": "Maximus",
+    "forma_pago": "Contado",
+    "agencia": "NOMBRE DE LA AGENCIA",
+    "nombre_contacto": "NOMBRE DEL CONTACTO ",
+    "telefono_contacto": "6141985118",
+    "email_contacto": "contacto@hotmail.com",
+    "beneficiarios": [
+        {
+          "nombre": "NOMBRE BENEFICIOARIO 1",
+          "apellido": "APELLIDO BENEFICIARIO 1",
+          "nacimiento": "15/12/1968",
+          "edad": "49",
+          "documento": "15115321",
+          "telefono": "1147895616",
+          "email": "beneficiario1@gmail.com",
+          "voucher": "CA-KCCL2M-1-1-MX"
+        }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false
+}
+
+
+**Voucher Corporativo**
++++++++++++++++++++++++
+
+
+El servicio de consulta_voucher cuenta con la particularidad de responder cierto tipo de datos según el código del voucher que se esté consultando, por ejemplo: Si el código está conformado por tres bloques separados por guiones (ejemplo: CA-XXXX-XX), pero además ese código corresponde a un voucher corporativo, entonces la respuesta estará conformada por los datos de la emisión corporativa y contará con un valor **(emisiones)** compuesto por los datos de cada una de las emisiones que están asociadas a ese voucher, quien a su vez tendrá un valor con los datos de cada uno de los beneficiarios de esa emisión. Por ejemplo:
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-KCCL2M-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+      "vocuher": "CA-KCCL2M-MX",
+      "id_voucher": "37913",
+      "categoria": "Corporativo",
+      "plan": "Maximus",
+      "forma_pago": "Contado",
+      "agencia": "NOMBRE DE LA AGENCIA",
+      "status": "Activo",
+      "emisiones": [
+        {
+          "voucher": "CA-KCCL2M-1-MX",
+          "id_voucher": "1291",
+          "origen": "Mexico",
+          "destino": "Mundial",
+          "salida": "09/01/2018",
+          "retorno": "13/01/2018",
+          "nombre_contacto": "NOMBRE DEL CONTACTO ",
+          "telefono_contacto": "11548332565",
+          "email_contacto": "contacto@gmail.com",
+          "beneficiarios": [
+          {
+            "nombre": "NOMBRE BENEFICIARIO 1",
+            "apellido": "APELLIDO BENEFICIARIO 1",
+            "nacimiento": "15/12/1968",
+            "edad": "49",
+            "documento": "x",
+            "telefono": "5455125874",
+            "email": "beneficiario1@hotmail.com",
+            "voucher": "CA-KCCL2M-1-1-MX"
+          },
+          {
+            "nombre": "NOMBRE BENEFICIARIO 2",
+            "apellido": "APELLIDO BENEFICIARIO 2",
+            "nacimiento": "15/12/1958",
+            "edad": "59",
+            "documento": "44651625",
+            "telefono": "5455125874",
+            "email": "beneficiario2@hotmail.com",
+            "voucher": "CA-KCCL2M-1-2-MX"
+          }
+        ]
+      },
+      {
+       "voucher": "CA-KCCL2M-2-MX",
+       "id_voucher": "1467",
+       "origen": "Mexico",
+       "destino": "Mundial",
+       "salida": "13/01/2018",
+       "retorno": "14/01/2018",
+       "nombre_contacto": "NOMBRE DEL CONTACTO ",
+       "telefono_contacto": "6141985118",
+       "email_contacto": "contacto@hotmail.com",
+       "beneficiarios": [
+         {
+           "nombre": "NOMBRE BENEFICIARIO 1",
+           "apellido": "APELLIDO BENEFICIARIO 1",
+           "nacimiento": "29/12/1962",
+           "edad": "55",
+           "documento": ".",
+           "telefono": "1255441545",
+           "email": "beneficiario1@gmail.com",
+           "voucher": "CA-KCCL2M-2-1-MX"
+         }
+       ]
+      }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false
+}
+
+
+**Voucher Emisión Corporativa**
++++++++++++++++++++++++++++++++
+
+Para esta consulta nuestro servicio se encargará de emitir los datos correspondientes a la emisión corporativa, omitiendo los datos del “voucher padre” de dicha emisión.
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-KCCL2M-1-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+    "voucher": "CA-KCCL2M-1-MX",
+    "id_voucher": "1291",
+    "origen": "Mexico",
+    "destino": "Mundial",
+    "salida": "09/01/2018",
+    "retorno": "13/01/2018",
+    "categoria": "Corporativo",
+    "plan": "Maximus",
+    "forma_pago": "Contado",
+    "agencia": "NOMBRE DE LA AGENCIA",
+    "nombre_contacto": "NOMBRE DEL CONTACTO",
+    "telefono_contacto": "5548569952",
+    "email_contacto": "contacto@gmail.com",
+    "beneficiarios": [
+        {
+          "nombre": "NOMBRE BENEFICIARIO 1",
+          "apellido": "APELLIDO BENEFICIARIO 1",
+          "nacimiento": "15/12/1968",
+          "edad": "49",
+          "documento": "x",
+          "telefono": "5646468841",
+          "email": "beneficiario1@gmail.com",
+          "voucher": "CA-KCCL2M-1-1-MX"
+        }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false
+}
+
+
+**Voucher Venta de Precompra**
+++++++++++++++++++++++++++++++
+
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-IBJ6B3-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+      "vocuher": "CA-IBJ6B3-MX",
+      "id_voucher": "26614",
+      "categoria": "Precompra",
+      "plan": "Maximus",
+      "forma_pago": "Contado",
+      "agencia": "NOMBRE DE LA AGENCIA",
+      "status": "Activo",
+      "emisiones": [
+        {
+          "voucher": "CA-ELC00E-MX",
+          "id": "31096",
+          "origen": "Mexico",
+          "destino": "Mundial",
+          "salida": "01/09/2017",
+          "retorno": "26/09/2017",
+          "categoria": "Precompra",
+          "plan": "Maximus",
+          "forma_pago": "Contado",
+          "agencia": "NOMBRE DE LA AGENCIA",
+          "nombre_contacto": "NOMBRE DEL CONTACTO",
+          "telefono_contacto": "55215859",
+          "email_contacto": "",
+          "beneficiarios": [
+            {
+              "nombre": "NOMBRE BENEFICIARIO 1",
+              "apellido": "APELLIDO BENEFICIARIO 1",
+              "nacimiento": "24/10/1950",
+              "edad": "67",
+              "documento": "G55485752",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO1@GMAIL.MX",
+              "voucher": "CA-ELC00E-1-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 2",
+              "apellido": " APELLIDO BENEFICIARIO 2",
+              "nacimiento": "15/04/1937",
+              "edad": "81",
+              "documento": "G25708511",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO2@GMAIL.MX",
+              "voucher": "CA-ELC00E-2-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 3",
+              "apellido": "APELLIDO BENEFICIARIO 3",
+              "nacimiento": "24/08/1958",
+              "edad": "59",
+              "documento": "G544488777",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO3@GMAIL.MX",
+              "voucher": "CA-ELC00E-3-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 4",
+              "apellido": "APELLIDO BENEFICIARIO 4",
+              "nacimiento": "03/04/1956",
+              "edad": "62",
+              "documento": "G8889654",
+              "telefono": "55215859",
+              "email": "BEN4@GMAIL.MX",
+              "voucher": "CA-ELC00E-4-MX"
+            }
+          ]
+        },
+        {
+          "voucher": "CA-4CEKJB-MX",
+          "id": "33516",
+          "origen": "Mexico",
+          "destino": "Mundial",
+          "salida": "14/10/2017",
+          "retorno": "24/10/2017",
+          "categoria": "Precompra",
+          "plan": "Maximus",
+          "forma_pago": "Contado",
+          "agencia": "NOMBRE DE LA AGENCIA",
+          "nombre_contacto": "NOMBRE CONTACTO",
+          "telefono_contacto": "5554888787",
+          "email_contacto": "",
+          "beneficiarios": [
+            {
+              "nombre": " NOMBRE BENEFICIARIO 1",
+              "apellido": "APELLIDO BENEFICIARIO 1",
+              "nacimiento": "15/06/1951",
+              "edad": "66",
+              "documento": "G888223123",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO1@GMAIL.MX",
+              "voucher": "CA-4CEKJB-1-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 2",
+              "apellido": "APELLIDO BENEFICIARIO 2",
+              "nacimiento": "15/05/1959",
+              "edad": "59",
+              "documento": "G66335241",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO2@GMAIL.MX",
+              "voucher": "CA-4CEKJB-2-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 3",
+              "apellido": "APELLIDO BENEFICIARIO 3",
+              "nacimiento": "28/03/1967",
+              "edad": "51",
+              "documento": "G777845444",
+              "telefono": "55215859",
+              "email": "BEBENFICIARIO3@GMAIL.MX",
+              "voucher": "CA-4CEKJB-3-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 4",
+              "apellido": "APELLIDO BENEFICIARIO 4",
+              "nacimiento": "25/10/1993",
+              "edad": "24",
+              "documento": "G555564565",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO4@GMAIL.MX",
+              "voucher": "CA-4CEKJB-4-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 5",
+              "apellido": "APELLIDO BENEFICIARIO 5",
+              "nacimiento": "05/08/1951",
+              "edad": "66",
+              "documento": "G777747474",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO5@GMAIL.MX",
+              "voucher": "CA-4CEKJB-5-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 6",
+              "apellido": "APELLIDO BENEFICIARIO 6",
+              "nacimiento": "22/09/1960",
+              "edad": "57",
+              "documento": "G2212121",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO6@GMAIL.MX",
+              "voucher": "CA-4CEKJB-6-MX"
+            }
+          ]
+        },
+        {
+          "voucher": "CA-7C1L86-MX",
+          "id": "33525",
+          "origen": "Mexico",
+          "destino": "Mundial",
+          "salida": "14/10/2017",
+          "retorno": "24/10/2017",
+          "categoria": "Precompra",
+          "plan": "Maximus",
+          "forma_pago": "Contado",
+          "agencia": "NOMBRE DE LA AGENCIA",
+          "nombre_contacto": "NOMBRE DEL CONTACTO",
+          "telefono_contacto": "55215859",
+          "email_contacto": "",
+          "beneficiarios": [
+            {
+              "nombre": " NOMBRE BENEFICIARIO 1",
+              "apellido": "APELLIDO BENEFICIARIO 1",
+              "nacimiento": "14/05/1953",
+              "edad": "65",
+              "documento": "G19301617",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO1@GMAIL.MX",
+              "voucher": "CA-7C1L86-1-MX"
+            },
+            {
+              "nombre": "NOMBRE BENEFICIARIO 1",
+              "apellido": "APELLIDO BENEFICIARIO 1",
+              "nacimiento": "02/10/1947",
+              "edad": "70",
+              "documento": "G17737367",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO1@GMAIL.MX",
+              "voucher": "CA-7C1L86-2-MX"
+            },
+            {
+              "nombre": "NOMBRE BENEFICIARIO 2",
+              "apellido": "APELLIDO BENEFICIARIO 2",
+              "nacimiento": "20/11/1953",
+              "edad": "64",
+              "documento": "G999656564",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO2@GMAIL.MX",
+              "voucher": "CA-7C1L86-3-MX"
+            },
+            {
+              "nombre": "NOMBRE BENEFICIARIO 3",
+              "apellido": "APELLIDO BENEFICIARIO 3",
+              "nacimiento": "06/01/1951",
+              "edad": "67",
+              "documento": "G1121235",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO3@GMAIL.MX",
+              "voucher": "CA-7C1L86-4-MX"
+            },
+            {
+              "nombre": "NOMBRE BENEFICIARIO 4",
+              "apellido": "APELLIDO BENEFICIARIO 4",
+              "nacimiento": "15/07/1961",
+              "edad": "56",
+              "documento": "G015232",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO4@GMAIL.MX",
+              "voucher": "CA-7C1L86-5-MX"
+            },
+            {
+              "nombre": "NOMBRE BENEFICIARIO 5",
+              "apellido": "APELLIDO BENEFICIARIO 5",
+              "nacimiento": "02/09/1940",
+              "edad": "77",
+              "documento": "YB09052",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO5@GMAIL.MX",
+              "voucher": "CA-7C1L86-6-MX"
+            },
+            {
+              "nombre": " NOMBRE BENEFICIARIO 6",
+              "apellido": " APELLIDO BENEFICIARIO 6",
+              "nacimiento": "24/01/1945",
+              "edad": "73",
+              "documento": "G267311",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO@GMAIL.MX",
+              "voucher": "CA-7C1L86-7-MX"
+            }
+          ]
+        },
+        {
+          "voucher": "CA-5FKAJD-MX",
+          "id": "33617",
+          "origen": "Mexico",
+          "destino": "Mundial",
+          "salida": "14/10/2017",
+          "retorno": "24/10/2017",
+          "categoria": "Precompra",
+          "plan": "Maximus",
+          "forma_pago": "Contado",
+          "agencia": "NOMBRE DE LA AGENCIA",
+          "nombre_contacto": "NOMBRE DEL CONTACTO",
+          "telefono_contacto": "55215859",
+          "email_contacto": "CONTACTO@GMAIL.MX",
+          "beneficiarios": [
+            {
+              "nombre": " NOMBRE BENEFICIARIO 1",
+              "apellido": " APELLIDO BENEFICIARIO 1",
+              "nacimiento": "02/11/1968",
+              "edad": "49",
+              "documento": "G267996",
+              "telefono": "55215859",
+              "email": "BENEFICIARIO@GMAIL.MX",
+              "voucher": "CA-5FKAJD-1-MX"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false 
+}
+
+
+**Voucher Emisión de Precompra**
+++++++++++++++++++++++++++++++++
+
+
+**Petición:**
+
+>>>
+{
+  "ps":"http://prod.continentalassist.com",
+  "language_id":"spa",
+  "codigo":"CA-ELC00E-MX"
+}
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+    "voucher": "CA-ELC00E-MX",
+    "id_voucher": "31096",
+    "origen": "Mexico",
+    "destino": "Mundial",
+    "salida": "01/09/2017",
+    "retorno": "26/09/2017",
+    "categoria": "Precompra",
+    "plan": "Maximus",
+    "forma_pago": "Contado",
+    "agencia": "NOMBRE DE LA AGENCIA",
+    "nombre_contacto": "NOMBRE CONTACTO",
+    "telefono_contacto": "55215859",
+    "email_contacto": "",
+    "status": "Activo",
+    "beneficiarios": [
+      {
+        "nombre": " NOMBRE BENEFICIARIO 1",
+        "apellido": "APELLIDO BENEFICIARIO 1",
+        "fecha_nacimiento": "24/10/1950",
+        "documento": "G08532627",
+        "telefono": "55215859",
+        "email": "BENEFICIARIO1@CENTRODEPEREGRINACIONES.MX",
+        "voucher": "CA-ELC00E-1-MX"
+      },
+      {
+        "nombre": " NOMBRE BENEFICIARIO 2",
+        "apellido": " APELLIDO BENEFICIARIO 2",
+        "fecha_nacimiento": "15/04/1937",
+        "documento": "G25708511",
+        "telefono": "55215859",
+        "email": " BENEFICIARIO2@CENTRODEPEREGRINACIONES.MX",
+        "voucher": "CA-ELC00E-2-MX"
+      },
+      {
+        "nombre": " NOMBRE BENEFICIARIO 3",
+        "apellido": " APELLIDO BENEFICIARIO 3",
+        "fecha_nacimiento": "24/08/1958",
+        "documento": "G11381859",
+        "telefono": "55215859",
+        "email": " BENEFICIARIO3@CENTRODEPEREGRINACIONES.MX",
+        "voucher": "CA-ELC00E-3-MX"
+      },
+      {
+        "nombre": "NOMBRE BENEFICIARIO 4",
+        "apellido": " APELLIDO BENEFICIARIO 4",
+        "fecha_nacimiento": "03/04/1956",
+        "documento": "G09009213",
+        "telefono": "55215859",
+        "email": " BENEFICIARIO4@CENTRODEPEREGRINACIONES.MX",
+        "voucher": "CA-ELC00E-4-MX"
+      }
+      ]
+    }
+  ],
+  "cantidad": 1,
+  "error": false 
+}
+
+
+**Nombre del Servicio:** consulta_planes_grupal
+
+**Parámetros Requeridos:**
+
+- ps
+- dias
+- edades
+- id_categoria
+- id_destino
+- familiar
+
+**Ejemplo:**
+
+>>>
+{
+  "ps":"prod.continentalassist.com",
+  "dias":5,
+  "edades":[14,30,70],
+  "id_categoria":24,
+  "id_destino":2,
+  "familiar": 1
+}
+
+Al recibir los datos, este servicio evalúa el parámetro “edades” y los valores de las edades máximas de la categoría seleccionada, para así determinar cuántos menores, cuántos adultos y cuántas personas de tercera edad, comprenden dicho campo. 
+
+Se debe tomar en cuenta que si alguna de las edades está por encima de los valores de la edad máxima de la categoría seleccionada, el servicio simplemente responderá con valores vacíos:
+
+>>>
+{
+  "resultado": [],
+  "cantidad": 0,
+  "error": false
+}
+
+ya que **el valor de las edades máximas no depende únicamente de la categoría sino también de cada uno de los planes que conforman dicha categoría.**
+
+Así mismo, localiza los planes cuyos mínimos y máximos de días correspondan con los que tengan asignados y que obviamente pertenezcan a la categoría seleccionada.
+
+Tomando en cuenta estas condiciones, el servicio se encargará de calcular el precio grupal del plan, basándose en las reglas de negocio del mismo, los incrementos por edades, los descuentos familiares y la cantidad de días en el parámetro “dias”.
+
+En caso de que el parámetro “familiar” tenga valor 1, que la categoría acepte el descuento de Plan Familiar y que las edades correspondan a las edades permitidas para dicho beneficio, el servicio se encargará de realizar los respectivos cálculos, para así emitir una respuesta basada en el descuento de Plan Familiar.
+
+
+**Respuesta:**
+
+>>>
+{
+  "resultado": [
+    {
+      "id": "21",
+      "valor": "21",
+      "nombre": "Traveler",
+      "precio": "348.00",
+      "precio_adulto_mayor": "522.00",
+      "moneda": "USD",
+      "edad_maxima_sin_incremento": "70",
+      "acepta_pago_tdc": "SI",
+      "precio_grupal": "870.00"
+    }
+  ],
+  “cantidad”: 1,
+  “error”: false
+}
+
+
