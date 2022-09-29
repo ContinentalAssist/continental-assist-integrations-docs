@@ -11,8 +11,8 @@ cotizaciones de viaje implementados por nosotros sobre la implementación a real
 correcto funcionamiento de la integración.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+
+   instructions
 
 
 Indices y tablas
