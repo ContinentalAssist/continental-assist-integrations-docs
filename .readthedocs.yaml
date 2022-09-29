@@ -5,7 +5,7 @@ build:
   os: "ubuntu-20.04"
   tools:
     python: "3.9"
-  image: latest
+  
 
 python:
   # Install our python package before building the docs
