@@ -3,8 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Continental Assist's documentation!
-==============================================
+Manual de Usuario de los Web Services de Integración entre el Sistema Continental Assist y otros sistemas web
+=============================================================================================================
+El presente manual tiene por objetivo dar a conocer orientar a los webmasters de los sites
+externos que deseen suscribirse con Continental Assist para utilizar los servicios de planes y
+cotizaciones de viaje implementados por nosotros sobre la implementación a realizar para el
+correcto funcionamiento de la integración.
 
 .. toctree::
    :maxdepth: 2
