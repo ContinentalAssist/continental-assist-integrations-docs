@@ -60,8 +60,9 @@ Instrucciones:
 
 .. rubric:: (NOTA: La ruta “demo.continentalassist.com/restapi/v1/” es únicamente para fines de pruebas y desarrollo de los servicios).
 
-
-.. centered:: Listado de Servicios
+=========================
+**Listado de Servicios**
+=========================
 
 +----------------------+----------------------------------------+------------------------+
 | Nombre del servicio  | Descripción y Respuesta                |  Parametros Requeridos |
@@ -487,8 +488,10 @@ Instrucciones:
 
 - La estructuración del JSON antes nombrado es responsabilidad de los webmasters de los sites externos.
 
+====================
+**Otros Servicios**
+====================
 
-.. centered:: **OTROS SERVICIOS**
 
 **Nombre del Servicio:** consulta_voucher
 
@@ -1182,7 +1185,7 @@ Para esta consulta nuestro servicio se encargará de emitir los datos correspond
 }
 
 
-**Nombre del Servicio:** consulta_planes_grupal
+**consulta_planes_grupal** 
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 **Parámetros Requeridos:**
@@ -1247,4 +1250,83 @@ En caso de que el parámetro “familiar” tenga valor 1, que la categoría ace
   “error”: false
 }
 
+
+**planes / plans** 
++++++++++++++++++++
+
+**Parámetros Requeridos:**
+
+-	ps
+-	fechadesde
+-	fechahasta
+-	edadespasajeros
+-	idorigen
+-	iddestino
+-	idcategoria
+-	planfamiliar
+
+| **ps:** Este campo recibe el identificador de la página que consumirá el servicio y el cual debe estar dado de alta y aprobado para poder acceder a los servicios.
+| **fechadesde:** Este campo recibe la fecha de salida en la que se requiere adquirir el servicio y debe ser llenado con un formato de fecha AAAA-MM-DD, adicional a eso debe ser mayor o igual al día en curso.
+| **fechahasta:** Este campo recibe la fecha de regreso en la que se requiere adquirir el servicio y debe ser llenado con un formato de fecha AAAA-MM-DD, adicional a eso no puede ser menor a la fecha de salida y la cantidad de días entre las dos fechas no debe superar los 365 días (366 en años bisiestos).
+| **edadespasajeros:** Es un arreglo de números en el cual se debe indicar las edades de los pasajeros que viajaran. Las “edades” serán evaluadas para determinar cuantas personas son menores, cuantos adultos y cuantos superar la “edad incremento” ya que para estas últimas se aplicará un incremento de precio.
+| Tomando en cuenta estas condiciones, el servicio se encargará de calcular el **preciogrupalgrupal** del plan, basándose en las reglas de negocio.
+| **idorigen:** Este campo recibe el id del país de origen de donde saldrá el pasajero.
+| **iddestino:** Este campo recibe el id del país de destino a donde llegara el pasajero.
+| **idcategoria:** Este campo recibe el id de la categoría el cual indica el tipo de viaje que se realizara.
+
+**Ejemplo:**
+
+>>>
+{
+  "ps": "www.continentalassist.com",
+  "fechadesde": "2022-10-10",
+  "fechahasta": "2022-10-12",
+  "edadespasajeros": [30, 71],
+  "idorigen": 11,
+  "iddestino": 283,
+  "idcategoria": 24,
+  "planfamiliar": "f"
+}
+
+
+**Respuesta planes:**
+
+>>>
+{
+    "resultado": [
+        {
+            "idplan": "2565",
+            "nombreplan": "TRAVELER *",
+            "precioindividualsinincremento": "12.09",
+            "precioindividualconincrementoporedad": "18.135",
+            "preciototalgrupal": "30.225",
+            "edadmaximasinincremento": "70",
+            "moneda": "USD"
+        }
+    ],
+    "cantidad": 1,
+    "error": false,
+    "mensaje": ""
+}
+
+
+**Respuesta plans:**
+
+>>>
+{
+    "result": [
+        {
+            "idplan": "2565",
+            "nameplan": "TRAVELER *",
+            "individualpricewithoutincrease": "12.09",
+            "individualpricewithageincrease": "18.135",
+            "totalgroupprice": "30.225",
+            "maximumagewithoutincrease": "70",
+            "currency": "USD"
+        }
+    ],
+    "count": 1,
+    "error": false,
+    "message": ""
+}
 
