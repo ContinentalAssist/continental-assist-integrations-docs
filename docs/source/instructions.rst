@@ -1183,6 +1183,7 @@ Para esta consulta nuestro servicio se encargará de emitir los datos correspond
 
 
 **Nombre del Servicio:** consulta_planes_grupal
++++++++++++++++++++++++++++++++++++++++++++++++
 
 **Parámetros Requeridos:**
 
